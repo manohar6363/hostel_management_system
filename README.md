@@ -23,13 +23,6 @@ Welcome to the Hostel Management System repository! 🚀 This Fullstack applicat
 - **Navigate to the admin dashboard:** Manage students, rooms, and attendance with ease.
 - **Explore the intuitive user interface:** A seamless experience for administrators and students alike.
 
-## 🤝 Contributing
-Contributions are more than welcome! If you have suggestions or improvements, feel free to submit a pull request.
 
-## 📝 License
-This project is licensed under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-A big shoutout to the open-source community and contributors who make projects like this possible.
 
 Happy coding! 👩‍💻👨‍💻
