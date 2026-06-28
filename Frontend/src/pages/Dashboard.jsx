@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../CSS/dashboard.css'
-import Sidebar from '../components/Sidebar';
+import '../CSS/dashboard.css';
+import StaffSidebar from '../components/StaffSidebar';
+
 const Dashboard = () => {
   const [studentCount, setStudentCount] = useState(0);
   const [roomCount, setRoomCount] = useState(0);
   const [allocationCount, setAllocationCount] = useState(0);
 
   useEffect(() => {
-    // Fetch data from Spring Boot backend
     fetchStudentCount();
     fetchRoomCount();
     fetchAllocationCount();
@@ -47,67 +46,67 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Sidebar>
-              <h1 style={{fontSize:"30px"}}>DASHBOARD</h1>
-<div className='dashboard'>
-      <div class="dashcard">
-  <div class="first-content">
-    <span>STUDENT COUNT : {studentCount}</span>
-  </div>
-  <div class="second-content">
-<span><Link to="/AddStudents" style={{color:"black"}}>Add Students</Link></span>
-  </div>
-</div>
+      <StaffSidebar>
+        <h1 style={{ fontSize: "30px" }}>DASHBOARD</h1>
+        <div className='dashboard'>
 
-<div class="dashcard">
-  <div class="first-content">
-    <span>ROOM COUNT : {roomCount}</span>
-  </div>
-  <div class="second-content">
-  <span><Link to="/AddRooms" style={{color:"black"}}>Add Rooms</Link></span>
-  </div>
-</div>
+          <div className="dashcard">
+            <div className="first-content">
+              <span>STUDENT COUNT : {studentCount}</span>
+            </div>
+            <div className="second-content">
+              <span><Link to="/AddStudents" style={{ color: "black" }}>Add Students</Link></span>
+            </div>
+          </div>
 
-      <div class="dashcard">
-  <div class="first-content">
-    <span>ALLOCATION COUNT : {allocationCount}</span>
+          <div className="dashcard">
+            <div className="first-content">
+              <span>ROOM COUNT : {roomCount}</span>
+            </div>
+            <div className="second-content">
+              <span><Link to="/AddRooms" style={{ color: "black" }}>Add Rooms</Link></span>
+            </div>
+          </div>
 
-  </div>
-  <div class="second-content">
-<span><Link to="/RoomAllocation" style={{color:"black"}}>ALLOCATE</Link></span>
-  </div>
-</div>
-      <div class="dashcard  ">
-  <div class="first-content">
-    <span>ATTENDENCE </span>
-  </div>
-  <div class="second-content">
-  <span><Link to="/Attendance" style={{color:"black"}}>View Attendance</Link></span>
-  </div>
-</div>
-      <div class="dashcard  ">
-  <div class="first-content">
-    <span>STUDENT DETAILS</span>
-  </div>
-  <div class="second-content">
-  <span><Link to="/Student_Details" style={{color:"black"}}>View</Link></span>
-  </div>
-</div>
-      <div class="dashcard  ">
-  <div class="first-content">
-    <span>SWITCH TO ADMIN</span>
-  </div>
-  <div class="second-content">
-  <span><Link to="/admin_login  " style={{color:"black"}}>LOGIN</Link></span>
-  </div>
-</div>
-</div>
-</Sidebar>
-</div>
+          <div className="dashcard">
+            <div className="first-content">
+              <span>ALLOCATION COUNT : {allocationCount}</span>
+            </div>
+            <div className="second-content">
+              <span><Link to="/RoomAllocation" style={{ color: "black" }}>ALLOCATE</Link></span>
+            </div>
+          </div>
 
+          <div className="dashcard">
+            <div className="first-content">
+              <span>ATTENDENCE</span>
+            </div>
+            <div className="second-content">
+              <span><Link to="/Attendance" style={{ color: "black" }}>View Attendance</Link></span>
+            </div>
+          </div>
 
-    
-    
+          <div className="dashcard">
+            <div className="first-content">
+              <span>STUDENT DETAILS</span>
+            </div>
+            <div className="second-content">
+              <span><Link to="/Student_Details" style={{ color: "black" }}>View</Link></span>
+            </div>
+          </div>
+
+          <div className="dashcard">
+            <div className="first-content">
+              <span>SWITCH TO ADMIN</span>
+            </div>
+            <div className="second-content">
+              <span><Link to="/admin_login" style={{ color: "black" }}>LOGIN</Link></span>
+            </div>
+          </div>
+
+        </div>
+      </StaffSidebar>
+    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import AdminSidebar from '../components/AdminSidebar';
 
 const StaffManagementPage = () => {
   const [staffList, setStaffList] = useState([]);
@@ -7,7 +8,6 @@ const StaffManagementPage = () => {
   const [editingStaff, setEditingStaff] = useState(null);
 
   useEffect(() => {
-    // Fetch staff data from the Spring Boot API
     fetch('http://localhost:8080/signup/getall')
       .then(response => response.json())
       .then(data => {
@@ -29,13 +29,11 @@ const StaffManagementPage = () => {
   };
 
   const handleDeleteClick = (staffId) => {
-    // Send a DELETE request to the Spring Boot API
     fetch(`http://localhost:8080/signup/delete/${staffId}`, {
       method: 'DELETE'
     })
       .then(response => {
         if (response.ok) {
-          // Remove the deleted staff from the staffList
           setStaffList(prevStaffList =>
             prevStaffList.filter(staff => staff.id !== staffId)
           );
@@ -50,17 +48,13 @@ const StaffManagementPage = () => {
 
   const handleFormSubmit = (staffData) => {
     if (editingStaff) {
-      // Update existing staff
       fetch(`http://localhost:8080/signup/update/${editingStaff.id}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(staffData)
       })
         .then(response => response.json())
         .then(updatedStaff => {
-          // Update the staffList with the edited staff
           setStaffList(prevStaffList =>
             prevStaffList.map(staff =>
               staff.id === updatedStaff.id ? updatedStaff : staff
@@ -68,34 +62,26 @@ const StaffManagementPage = () => {
           );
           setShowAddForm(false);
         })
-        .catch(error => {
-          console.error('Error:', error);
-        });
+        .catch(error => { console.error('Error:', error); });
     } else {
-      // Add new staff
       fetch('http://localhost:8080/signup/post', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(staffData)
       })
         .then(response => response.json())
         .then(newStaff => {
-          // Add the new staff to the staffList
           setStaffList(prevStaffList => [...prevStaffList, newStaff]);
           setShowAddForm(false);
         })
-        .catch(error => {
-          console.error('Error:', error);
-        });
+        .catch(error => { console.error('Error:', error); });
     }
   };
 
   return (
-    <div>
+    <AdminSidebar>
       <h1>Staff Management</h1>
-     
+
       {showAddForm ? (
         <StaffForm
           staff={editingStaff}
@@ -104,7 +90,6 @@ const StaffManagementPage = () => {
         />
       ) : (
         <button onClick={handleAddClick}>Add Staff</button>
-        
       )}
 
       <StaffTable
@@ -112,37 +97,38 @@ const StaffManagementPage = () => {
         onEdit={handleEditClick}
         onDelete={handleDeleteClick}
       />
-    </div>
+    </AdminSidebar>
   );
 };
 
 const StaffTable = ({ staffList, onEdit, onDelete }) => {
   return (
     <>
-    <NavLink to={"/"}><button >LOG OUT</button></NavLink>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Password</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {staffList.map(staff => (
-          <tr key={staff.id}>
-            <td>{staff.name}</td>
-            <td>{staff.username}</td>
-            <td>{staff.password}</td>
-            <td>
-              <button onClick={() => onEdit(staff)}>Edit</button>
-              <button onClick={() => onDelete(staff.id)}>Delete</button>
-            </td>
+      <NavLink to={"/"}><button>LOG OUT</button></NavLink>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table></>
+        </thead>
+        <tbody>
+          {staffList.map(staff => (
+            <tr key={staff.id}>
+              <td>{staff.name}</td>
+              <td>{staff.username}</td>
+              <td>{staff.password}</td>
+              <td>
+                <button onClick={() => onEdit(staff)}>Edit</button>
+                <button onClick={() => onDelete(staff.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 
@@ -153,50 +139,28 @@ const StaffForm = ({ staff, onSubmit, onCancel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const staffData = {
-      name,
-      username,
-      password
-    };
-
-    onSubmit(staffData);
+    onSubmit({ name, username, password });
   };
 
   return (
     <div className='popup'>
-    <form onSubmit={handleSubmit} className='popup-form'>
-      <div>
-        
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">{staff ? 'Save' : 'Add'}</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
-    </form></div>
+      <form onSubmit={handleSubmit} className='popup-form'>
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
+        <button type="submit">{staff ? 'Save' : 'Add'}</button>
+        <button type="button" onClick={onCancel}>Cancel</button>
+      </form>
+    </div>
   );
 };
 

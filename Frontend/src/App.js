@@ -1,55 +1,48 @@
 import React from 'react';
-import './App.css'; 
+import './App.css';
 import WebFont from "webfontloader";
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard.jsx';
 import About from './pages/About.jsx';
-import AddRoomForm from './pages/AddRoomForm'; 
+import AddRoomForm from './pages/AddRoomForm';
 import Product from './pages/StudentDetails.jsx';
 import AttendancePage from './pages/Attendance';
-import RoomAllocation from './pages/RoomAllocation.jsx'; 
+import RoomAllocation from './pages/RoomAllocation.jsx';
 
 import Login from './pages/Login';
 import Admin from './pages/AdminLogin';
 import StaffManagementPage from './pages/AddStaff';
+import AdminSettings from './pages/AdminSettings';
 import Nav from './components/Nav';
-import SearchPage from './pages/SearchPage'; 
+import SearchPage from './pages/SearchPage';
 
-      
 const App = () => {
- 
-  
   return (
-    
-    <div className='app'>   
-     <BrowserRouter>
-     <Nav></Nav>
-
-      
-         {/* <Sidebar> */}
- 
+    <div className='app'>
+      <BrowserRouter>
+        <Nav></Nav>
         <Routes>
-          <Route path="/" element={<Login/>} /> 
-          <Route path="/add_staff" element={<StaffManagementPage />} /> 
-          <Route path="/admin_login" element={<Admin />} /> 
+          {/* Public routes */}
+          <Route path="/" element={<Login />} />
+          <Route path="/admin_login" element={<Admin />} />
+
+          {/* Staff routes — StaffSidebar is used inside each page */}
           <Route path="/home" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} /> 
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/AddStudents" element={<About />} />
-          <Route path="/RoomAllocation" element={<RoomAllocation />} />
           <Route path="/AddRooms" element={<AddRoomForm />} />
+          <Route path="/RoomAllocation" element={<RoomAllocation />} />
           <Route path="/Student_Details" element={<Product />} />
           <Route path="/Attendance" element={<AttendancePage />} />
-          <Route  path="/attendance_detail" element={<SearchPage/>}/>
+          <Route path="/attendance_detail" element={<SearchPage />} />
+
+          {/* Admin routes — AdminSidebar is used inside each page */}
+          <Route path="/add_staff" element={<StaffManagementPage />} />
+          <Route path="/admin_settings" element={<AdminSettings />} />
         </Routes>
-       
-
-        {/* </Sidebar> */}
-        
-    </BrowserRouter>
+      </BrowserRouter>
     </div>
-
   );
 };
 

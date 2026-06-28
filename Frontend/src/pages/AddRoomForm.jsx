@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../CSS/room.css';
 import { RiHome6Fill } from 'react-icons/ri';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/StaffSidebar';
 
 const AddRoomForm = () => {
   const [rooms, setRooms] = useState([]);
@@ -141,147 +141,147 @@ const AddRoomForm = () => {
   return (
     <div>
       <Sidebar>
-      <h1 style={{fontSize:"30px"}} >Room List</h1>
-      <button onClick={toggleForm} className="addbutton">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          viewBox="0 0 20 20"
-          height="20"
-          fill="none"
-          className="svg-icon"
-        >
-          <g strokeWidth="1.5" strokeLinecap="round" stroke="#de8a2a">
-            <circle r="7.5" cy="10" cx="10"></circle>
-            <path d="m9.99998 7.5v5"></path>
-            <path d="m7.5 9.99998h5"></path>
-          </g>
-        </svg>
-      </button>
-      {showForm && (
-        <div className="popup">
-          <form onSubmit={addRoom} className="popup-form">
-            <h2>Add Room</h2>
-            <input
-              className="room"
-              type="text"
-              name="roomNumber"
-              placeholder="Room Number"
-              value={newRoomData.roomNumber}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              className="room"
-              type="text"
-              name="capacity"
-              placeholder="Capacity"
-              value={newRoomData.capacity}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              className="room"
-              type="text"
-              name="floor"
-              placeholder="Floor"
-              value={newRoomData.floor}
-              onChange={handleInputChange}
-              required
-            />
-            <p1>Availability</p1>
-            <select
-              name="availability"
-              value={newRoomData.availability}
-              onChange={handleInputChange}
-              required
-            >
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </select>
-            <br></br>
-            <button type="submit">Submit</button>
-            <button onClick={toggleForm}>Cancel</button>
-          </form>
-        </div>
-      )}
-
-      {editForm && selectedRoom && (
-        <div className="popup">
-          <form onSubmit={editRoom} className="popup-form">
-            <h2><b>Edit Room</b>  </h2>
-            <input
-              className="room"
-              type="text"
-              name="roomNumber"
-              placeholder="Room Number"
-              value={editRoomData.roomNumber}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              className="room"
-              type="text"
-              name="capacity"
-              placeholder="Capacity"
-              value={editRoomData.capacity}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              className="room"
-              type="text"
-              name="floor"
-              placeholder="Floor"
-              value={editRoomData.floor}
-              onChange={handleInputChange}
-              required
-            />
-            <p1>Availability</p1>
-            <select
-              name="availability"
-              value={editRoomData.availability}
-              onChange={handleInputChange}
-              required
-            >
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </select>
-            <br></br>
-            <button type="submit">Save</button>
-            <button onClick={toggleEditForm}>Cancel</button>
-          </form>
-        </div>
-      )}
-
-      {notification && (
-        <div className="notification">{notification}</div>
-      )}
-
-      <div className="card-grid">
-        {rooms.map((room) => (
-          <div className="card" key={room.room_id}>
-            <a className="card1" href="#">
-              <p>Room Number: <b>{room.roomNumber}</b></p>
-              <p className="small">Capacity: <b>{room.capacity}</b> </p>
-              <p className="small">Floor:<b>{room.floor}</b> </p>
-              <p className="small">
-                Availability: <b>{room.availability? 'Yes' : 'No'}</b>
-              </p>
-              <div className="go-corner" href="#">
-                <div className="go-arrow">
-                  <RiHome6Fill />
-                </div>
-              </div>
-              <div className="edit-delete-buttons">
-                <button onClick={() => toggleEditForm(room)}>Edit</button>
-                <button onClick={() => deleteRoom(room.id)}>Delete</button>
-              </div>
-            </a>
+        <h1 style={{ fontSize: "30px" }} >Room List</h1>
+        <button onClick={toggleForm} className="addbutton">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            viewBox="0 0 20 20"
+            height="20"
+            fill="none"
+            className="svg-icon"
+          >
+            <g strokeWidth="1.5" strokeLinecap="round" stroke="#de8a2a">
+              <circle r="7.5" cy="10" cx="10"></circle>
+              <path d="m9.99998 7.5v5"></path>
+              <path d="m7.5 9.99998h5"></path>
+            </g>
+          </svg>
+        </button>
+        {showForm && (
+          <div className="popup">
+            <form onSubmit={addRoom} className="popup-form">
+              <h2>Add Room</h2>
+              <input
+                className="room"
+                type="text"
+                name="roomNumber"
+                placeholder="Room Number"
+                value={newRoomData.roomNumber}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                className="room"
+                type="text"
+                name="capacity"
+                placeholder="Capacity"
+                value={newRoomData.capacity}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                className="room"
+                type="text"
+                name="floor"
+                placeholder="Floor"
+                value={newRoomData.floor}
+                onChange={handleInputChange}
+                required
+              />
+              <p1>Availability</p1>
+              <select
+                name="availability"
+                value={newRoomData.availability}
+                onChange={handleInputChange}
+                required
+              >
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </select>
+              <br></br>
+              <button type="submit">Submit</button>
+              <button onClick={toggleForm}>Cancel</button>
+            </form>
           </div>
-        ))}
-      </div>
-    </Sidebar>
+        )}
+
+        {editForm && selectedRoom && (
+          <div className="popup">
+            <form onSubmit={editRoom} className="popup-form">
+              <h2><b>Edit Room</b>  </h2>
+              <input
+                className="room"
+                type="text"
+                name="roomNumber"
+                placeholder="Room Number"
+                value={editRoomData.roomNumber}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                className="room"
+                type="text"
+                name="capacity"
+                placeholder="Capacity"
+                value={editRoomData.capacity}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                className="room"
+                type="text"
+                name="floor"
+                placeholder="Floor"
+                value={editRoomData.floor}
+                onChange={handleInputChange}
+                required
+              />
+              <p1>Availability</p1>
+              <select
+                name="availability"
+                value={editRoomData.availability}
+                onChange={handleInputChange}
+                required
+              >
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </select>
+              <br></br>
+              <button type="submit">Save</button>
+              <button onClick={toggleEditForm}>Cancel</button>
+            </form>
+          </div>
+        )}
+
+        {notification && (
+          <div className="notification">{notification}</div>
+        )}
+
+        <div className="card-grid">
+          {rooms.map((room) => (
+            <div className="card" key={room.room_id}>
+              <a className="card1" href="#">
+                <p>Room Number: <b>{room.roomNumber}</b></p>
+                <p className="small">Capacity: <b>{room.capacity}</b> </p>
+                <p className="small">Floor:<b>{room.floor}</b> </p>
+                <p className="small">
+                  Availability: <b>{room.availability ? 'Yes' : 'No'}</b>
+                </p>
+                <div className="go-corner" href="#">
+                  <div className="go-arrow">
+                    <RiHome6Fill />
+                  </div>
+                </div>
+                <div className="edit-delete-buttons">
+                  <button onClick={() => toggleEditForm(room)}>Edit</button>
+                  <button onClick={() => deleteRoom(room.id)}>Delete</button>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </Sidebar>
     </div>
   );
 };
