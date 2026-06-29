@@ -17,6 +17,7 @@ import {
 import {
     FiLogOut
 } from "react-icons/fi";
+import { MdPayment } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
 
 const StaffSidebar = ({ children }) => {
@@ -56,6 +57,11 @@ const StaffSidebar = ({ children }) => {
             path: "/Attendance",
             name: "Attendance",
             icon: <BsClipboardCheckFill />
+        },
+        {
+            path: "/Fees",
+            name: "Fees",
+            icon: <MdPayment />
         },
         {
             path: "/",

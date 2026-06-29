@@ -34,4 +34,12 @@ public class FeeService {
     public void deleteFee(Long id) {
         feeRepository.deleteById(id);
     }
+
+    // NEW: marks a fee as paid — irreversible from the UI
+    public Fee markAsPaid(Long id) {
+        Fee fee = feeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Fee not found: " + id));
+        fee.setPaid(true);
+        return feeRepository.save(fee);
+    }
 }

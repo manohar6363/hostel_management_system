@@ -5,7 +5,8 @@ import {
 } from "react-icons/fa";
 import {
     MdOutlineAddHome,
-    MdPlaylistAddCheckCircle
+    MdPlaylistAddCheckCircle,
+    MdPayment
 } from "react-icons/md";
 import {
     BsFillPersonPlusFill,
@@ -24,7 +25,6 @@ const AdminSidebar = ({ children }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const location = useLocation();
 
-    // Forward the username state so AdminSettings can receive it
     const navState = location.state || {};
 
     const toggle = () => {
@@ -66,6 +66,12 @@ const AdminSidebar = ({ children }) => {
             path: "/Attendance",
             name: "Attendance",
             icon: <BsClipboardCheckFill />,
+            state: navState
+        },
+        {
+            path: "/Fees",
+            name: "Fees",
+            icon: <MdPayment />,
             state: navState
         },
         {

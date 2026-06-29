@@ -9,6 +9,7 @@ import AddRoomForm from './pages/AddRoomForm';
 import Product from './pages/StudentDetails.jsx';
 import AttendancePage from './pages/Attendance';
 import RoomAllocation from './pages/RoomAllocation.jsx';
+import Fees from './pages/Fees.jsx';
 
 import Login from './pages/Login';
 import Admin from './pages/AdminLogin';
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/Student_Details" element={<Product />} />
           <Route path="/Attendance" element={<AttendancePage />} />
           <Route path="/attendance_detail" element={<SearchPage />} />
+          <Route path="/Fees" element={<Fees />} />
 
           {/* Admin routes — AdminSidebar is used inside each page */}
           <Route path="/add_staff" element={<StaffManagementPage />} />
