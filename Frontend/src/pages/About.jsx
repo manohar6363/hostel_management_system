@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/student.css';
-import StaffSidebar from '../components/StaffSidebar';
+import StaffSidebar from "../components/StaffSidebar";
+import AdminSidebar from "../components/AdminSidebar";
 
 function About() {
+  const role = localStorage.getItem("role");
+  const Sidebar = role === "ADMIN" ? AdminSidebar : StaffSidebar
   const [students, setStudents] = useState([]);
   const [formData, setFormData] = useState({
     id: '',
@@ -121,7 +124,7 @@ function About() {
 
   return (
     <>
-      <StaffSidebar>
+      <Sidebar>
         <div className="toggle-button">
           <button onClick={toggleContent}>{showStudentDetails ? 'Add Students' : 'View Students'}</button>
         </div>
@@ -274,7 +277,7 @@ function About() {
             </div>
           </div>
         )}
-      </StaffSidebar>
+      </Sidebar>
     </>
   );
 }

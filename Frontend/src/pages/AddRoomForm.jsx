@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../CSS/room.css';
 import { RiHome6Fill } from 'react-icons/ri';
-import Sidebar from '../components/StaffSidebar';
+import StaffSidebar from '../components/StaffSidebar';
+import AdminSidebar from '../components/AdminSidebar';
 
 const AddRoomForm = () => {
+  const role = localStorage.getItem("role");
+  const Sidebar = role === "ADMIN" ? AdminSidebar : StaffSidebar;
   const [rooms, setRooms] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editForm, setEditForm] = useState(false);

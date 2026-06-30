@@ -29,6 +29,7 @@ function Admin() {
       alert("Wrong Username or Password!")
     } else {
       // Pass the logged-in username via navigation state
+      localStorage.setItem("role", "ADMIN");
       nav("/add_staff", { state: { username: username } });
     }
   }

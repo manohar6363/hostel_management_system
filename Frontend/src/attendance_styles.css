@@ -1,0 +1,438 @@
+/* ═══════════════════════════════════════════════════════════════
+   ATTENDANCE MODULE  —  append to App.css
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Page layout ─────────────────────────────────────────────── */
+.att-page {
+  padding: 28px 32px;
+  min-height: 100vh;
+  background: #f7f8fa;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.att-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.att-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px 0;
+  text-align: left;
+}
+
+.att-subtitle {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+
+/* ── Window pills ────────────────────────────────────────────── */
+.att-windows {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.att-window-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  background: #eee;
+  color: #888;
+  border: 1px solid #ddd;
+  transition: background 0.3s, color 0.3s;
+}
+
+.att-window-pill--open {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-color: #a5d6a7;
+}
+
+.att-window-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  flex-shrink: 0;
+}
+
+.att-window-pill--open .att-window-dot {
+  background: #43a047;
+}
+
+.att-window-time {
+  font-weight: 600;
+}
+
+/* ── Search row ──────────────────────────────────────────────── */
+.att-search-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.att-search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+}
+
+.att-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.att-search-input {
+  width: 100%;
+  padding: 9px 36px 9px 36px;
+  border: 1px solid #dde1e7;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #1a1a2e;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.att-search-input:focus {
+  border-color: #007bff;
+}
+
+.att-search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  line-height: 1;
+}
+
+.att-count {
+  font-size: 13px;
+  color: #888;
+  white-space: nowrap;
+}
+
+/* ── Table wrapper ───────────────────────────────────────────── */
+.att-table-wrap {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  overflow-x: auto;
+}
+
+.att-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.att-table thead tr {
+  background: #f2f4f8;
+}
+
+.att-table th {
+  padding: 13px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+  background: #f2f4f8;
+}
+
+.att-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  vertical-align: middle;
+}
+
+.att-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.att-table tbody tr:hover {
+  background: #fafbff;
+}
+
+.att-id-cell   { font-family: monospace; font-size: 13px; color: #555; }
+.att-name-cell { font-weight: 600; color: #1a1a2e; }
+.att-course-cell { color: #666; font-size: 13px; }
+.att-time-cell { font-family: monospace; font-size: 13px; color: #777; }
+
+/* ── Status badges ───────────────────────────────────────────── */
+.att-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.att-badge--present {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.att-badge--absent {
+  background: #fdecea;
+  color: #c62828;
+}
+
+.att-badge--pending {
+  background: #f5f5f5;
+  color: #999;
+}
+
+/* ── Mark present button ─────────────────────────────────────── */
+.att-mark-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.att-mark-btn:active {
+  transform: scale(0.97);
+}
+
+.att-mark-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.att-mark-btn--morning {
+  background: #1565c0;
+  color: #fff;
+}
+
+.att-mark-btn--morning:hover:not(:disabled) {
+  background: #0d47a1;
+}
+
+.att-mark-btn--evening {
+  background: #6a1b9a;
+  color: #fff;
+}
+
+.att-mark-btn--evening:hover:not(:disabled) {
+  background: #4a148c;
+}
+
+/* ── History button ──────────────────────────────────────────── */
+.att-history-btn {
+  padding: 6px 14px;
+  background: #fff;
+  border: 1px solid #dde1e7;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #444;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.att-history-btn:hover {
+  border-color: #007bff;
+  color: #007bff;
+  background: #f0f6ff;
+}
+
+/* ── Loading / empty states ──────────────────────────────────── */
+.att-loading,
+.att-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: #aaa;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+}
+
+/* ── Modal overlay ───────────────────────────────────────────── */
+.att-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.att-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 740px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+
+.att-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.att-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 3px 0;
+}
+
+.att-modal-subtitle {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.att-modal-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #aaa;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.att-modal-close:hover {
+  color: #333;
+}
+
+.att-modal-body {
+  overflow-y: auto;
+  padding: 0;
+}
+
+.att-modal-loading,
+.att-modal-empty {
+  text-align: center;
+  padding: 48px;
+  color: #aaa;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+/* ── History table (inside modal) ────────────────────────────── */
+.att-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+}
+
+.att-history-table th {
+  padding: 11px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  background: #f7f8fa;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+.att-history-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid #f5f5f5;
+  vertical-align: middle;
+}
+
+.att-history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.att-history-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ── Toast notifications ─────────────────────────────────────── */
+.att-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.att-toast {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+  animation: att-slide-in 0.25s ease;
+  max-width: 320px;
+}
+
+.att-toast--success {
+  background: #1b5e20;
+  color: #fff;
+}
+
+.att-toast--error {
+  background: #b71c1c;
+  color: #fff;
+}
+
+.att-toast--info {
+  background: #1a237e;
+  color: #fff;
+}
+
+@keyframes att-slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

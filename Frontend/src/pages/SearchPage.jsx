@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 // import '../CSS/Searchpage.css'
-import Sidebar from '../components/StaffSidebar';
+import StaffSidebar from '../components/StaffSidebar';
+import AdminSidebar from '../components/AdminSidebar';
+
 const SearchPage = () => {
+  const role = localStorage.getItem("role");
+  const Sidebar = role === "ADMIN" ? AdminSidebar : StaffSidebar;
   const [searchInput, setSearchInput] = useState('');
   const [data, setData] = useState([]);
 

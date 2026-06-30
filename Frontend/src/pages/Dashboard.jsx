@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/dashboard.css';
 import StaffSidebar from '../components/StaffSidebar';
+import AdminSidebar from '../components/AdminSidebar';
 
 const Dashboard = () => {
+  const role = localStorage.getItem("role");
+  const Sidebar = role === "ADMIN" ? AdminSidebar : StaffSidebar;
   const [studentCount, setStudentCount] = useState(0);
   const [roomCount, setRoomCount] = useState(0);
   const [allocationCount, setAllocationCount] = useState(0);
@@ -46,7 +49,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <StaffSidebar>
+      <Sidebar>
         <h1 style={{ fontSize: "30px" }}>DASHBOARD</h1>
         <div className='dashboard'>
 
@@ -105,7 +108,7 @@ const Dashboard = () => {
           </div>
 
         </div>
-      </StaffSidebar>
+      </Sidebar>
     </div>
   );
 };

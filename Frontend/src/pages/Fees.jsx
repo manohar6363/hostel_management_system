@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StaffSidebar from '../components/StaffSidebar';
+import AdminSidebar from '../components/AdminSidebar';
 import '../CSS/dashboard.css';
 
 const API = 'http://localhost:8080/api/fees';
@@ -7,6 +8,8 @@ const API = 'http://localhost:8080/api/fees';
 const emptyForm = { studentId: '', amount: '', paymentDate: '' };
 
 const Fees = () => {
+  const role = localStorage.getItem("role");
+  const Sidebar = role === "ADMIN" ? AdminSidebar : StaffSidebar;
   const [fees, setFees] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -172,7 +175,7 @@ const Fees = () => {
   // ── Render ───────────────────────────────────────────────────────────────────
   return (
     <div>
-      <StaffSidebar>
+      <Sidebar>
         <h1 style={{ fontSize: '30px' }}>FEES</h1>
 
         <div style={styles.toolbar}>
@@ -298,7 +301,7 @@ const Fees = () => {
           </Modal>
         )}
 
-      </StaffSidebar>
+      </Sidebar>
     </div>
   );
 };

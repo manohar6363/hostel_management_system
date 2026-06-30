@@ -1,8 +1,11 @@
 import "../CSS/allocationdatails.css";
 import React, { useState, useEffect } from 'react';
-import Sidebar from "../components/StaffSidebar";
+import StaffSidebar from '../components/StaffSidebar';
+import AdminSidebar from '../components/AdminSidebar';
 
 function StudentRoomAllocation() {
+  const role = localStorage.getItem("role");
+  const Sidebar = role === "ADMIN" ? AdminSidebar : StaffSidebar;
   const [allocations, setAllocations] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredAllocations, setFilteredAllocations] = useState([]);

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../CSS/roomallocation.css';
-import Sidebar from '../components/StaffSidebar';
+import StaffSidebar from '../components/StaffSidebar';
+import AdminSidebar from '../components/AdminSidebar';
 
 const AllocationPage = () => {
+  const role = localStorage.getItem("role");
+  const Sidebar = role === "ADMIN" ? AdminSidebar : StaffSidebar;
   const [students, setStudents] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [allocations, setAllocations] = useState([]);
